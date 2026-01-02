@@ -1,10 +1,10 @@
 # TypeScript Insights Microservice
 
-This is a TypeScript microservice that provides product insights analysis.
+A lightweight Express.js + TypeScript microservice that provides product analytics and insights for the e-commerce automation system.
 
 ## Quick Start
 
-1. **Install dependencies** (if not already installed):
+1. **Install dependencies**:
    ```bash
    npm install
    ```
@@ -19,6 +19,18 @@ This is a TypeScript microservice that provides product insights analysis.
 3. **Verify it's running**:
    - Open `http://localhost:3001/health` in your browser
    - You should see: `{"status":"ok"}`
+
+## Alternative: Use Convenience Scripts
+
+**Windows PowerShell:**
+```powershell
+.\start-service.ps1
+```
+
+**Windows CMD:**
+```cmd
+start-service.bat
+```
 
 ## API Endpoints
 
@@ -73,5 +85,45 @@ Health check endpoint.
 The service runs on port 3001 by default. You can change this by setting the `PORT` environment variable:
 
 ```bash
+# Windows PowerShell
+$env:PORT=3002; npm run dev
+
+# Linux/Mac
 PORT=3002 npm run dev
 ```
+
+## CORS Configuration
+
+CORS is enabled to allow requests from the React frontend. The service accepts requests from:
+- `http://localhost:5173` (Vite dev server)
+- `http://localhost:5174` (Alternative Vite port)
+- `http://127.0.0.1:5173`
+- `http://127.0.0.1:5174`
+
+## Error Handling
+
+The service includes comprehensive error handling:
+- Validates request body structure
+- Returns appropriate HTTP status codes
+- Provides descriptive error messages
+- Handles empty product arrays gracefully
+
+## Development
+
+```bash
+# Development with hot reload
+npm run dev
+
+# Build TypeScript
+npm run build
+
+# Run production build
+npm start
+```
+
+## Dependencies
+
+- `express` - Web framework
+- `cors` - CORS middleware
+- `typescript` - TypeScript compiler
+- `@types/node`, `@types/express`, `@types/cors` - Type definitions
